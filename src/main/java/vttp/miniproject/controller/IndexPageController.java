@@ -110,9 +110,6 @@ public class IndexPageController {
     public String displayMultipleResultWithMultiService(Model model, @PathVariable Integer count){
         logger.info("testing displayMultipleResults>>>" + count.toString());
         List<BoredResults> boredcalls = service.multipleAPICalls(count);
-        // User user = new User();
-        // user.setUsername("JP TEST");
-        redisService.save(boredcalls, "JPTEST2");
         model.addAttribute("boredlist",boredcalls);
         return "apimulti";
     }
