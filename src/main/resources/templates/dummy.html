@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span data-th-text="${query.NUM_API_CALLS}"></span> activities listed below
+    <!-- <br>
+    <tr th:each="boredResult, boredStat : ${boredlist}">
+        <span>Activity<td th:text="${boredStat.count}"></td>: <td th:text="${boredResult.activity}"></td></span>
+        <br>
+        <span>price:<td th:text="${boredResult.price}"></td></span>
+        <br>
+        <span>key:<td th:text="${boredResult.key}"></td></span>
+        <br>
+        <span>accessibility:<td th:text="${boredResult.accessibility}"></td></span>
+        <br> -->
+        <form method="POST" action="/saveRecords">
+
+			<div> 
+				<button type="submit">Save</button> 
+			</div>
+            <table>
+                <thead>
+                <tr class="table-dark">
+                  <th scope="col">activity</th>
+                  <th scope="col">key</th>
+                  <th scope="col">accessibility</th>
+                  <th scope="col">type</th>
+                  <th scope="col">price</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="boredResult : ${boredlist}">
+                  <td th:text="${boredResult.activity}"></td>
+                  <td th:text="${boredResult.key}"></td>
+                  <td th:text="${boredResult.accessibility}"></td>
+                  <td th:text="${boredResult.type}"></td>
+                  <td th:text="${boredResult.price}"></td>
+                  <td>
+                    Save: <input type="checkbox" data-th-value="${boredResult.key}" >
+                  </td>
+                </tr>
+                </tbody>
+            </table>
+			
+		</form>
+
+
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page</title>
+</head>
+<body>
+    <!-- <p> planetsList.get(0).name prints this <span data-th-text="${planetsList.get(0).name}"></span></p> -->
+    <p th:text="${getNumberThings}"></p>
+
+    <tr th:each="boredResult, boredStat : ${boredlist}">
+        <span>Activity<td th:text="${boredStat.count}"></td>: <td th:text="${boredResult.activity}"></td></span>
+        <br>
+        <!-- <span>Type:<td th:text="${boredResult.type}">Type: </td></span>
+        <br>
+        <span>participants:<td th:text="${boredResult.participants}">Type: </td></span>
+        <br>
+        <span>price:<td th:text="${boredResult.price}">Type: </td></span>
+        <br>
+        <span>key:<td th:text="${boredResult.key}">Type: </td></span>
+        <br>
+        <span>accessibility:<td th:text="${boredResult.accessibility}">Type: </td></span>
+        <br> -->
+    </tr>
+
+</body>
+</html>
