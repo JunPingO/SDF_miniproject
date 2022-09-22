@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import vttp.miniproject.model.BoredResults;
+import vttp.miniproject.model.User;
 import vttp.miniproject.service.RedisService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class BoredRestController {
     public ResponseEntity<?> getUserByUsername(@PathVariable String username){
      
         logger.info("get" + username);
-            Optional<BoredResults> optUser = redisService.getByUsername(username);
+            Optional<User> optUser = redisService.findbyUser(username);
 
             if(optUser.isEmpty()){
             JsonObject errJson = Json.createObjectBuilder()
@@ -44,7 +45,7 @@ public class BoredRestController {
             
         }
         
-        return ResponseEntity.ok(optUser.get());
+        return ResponseEntity.ok(optUser.get().getResults());
     }
 
 }

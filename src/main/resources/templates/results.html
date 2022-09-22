@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page</title>
+</head>
+<body>
+    <p th:text="'User Logged:' + ${username}"></p>
+
+    <table>
+        <thead>
+        <tr class="table-dark">
+          <th scope="col">activity</th>
+          <!-- <th scope="col">key</th> -->
+          <th scope="col">accessibility</th>
+          <th scope="col">type</th>
+          <th scope="col">price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="boredResult : ${boredlist}">
+          <td th:text="${boredResult.activity}"></td>
+          <!-- <td th:text="${boredResult.key}"></td> -->
+          <td th:text="${boredResult.accessibility}"></td>
+          <td th:text="${boredResult.type}"></td>
+          <td th:text="${boredResult.price}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

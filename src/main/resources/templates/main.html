@@ -4,20 +4,83 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SOMETHING TO DO!</title>
 </head>
 <body>
-    Always bored and looking for something to do? Look no further!
-    Select the number of activities you like to view
+    <p th:text="'Logged User:' + ${username}"></p>
+    Always bored and looking for something to do? Look no further! 
     <form 
     action="#" 
-    th:action="@{/mainpage}"
-    th:object="${query}" 
+    th:action="@{'/mainpage/' + ${username}}"
     method="post">
-    <p>Enter no of activities to display:  
-        <input type="number" th:field="*{NUM_API_CALLS}" min="1" max="5"/>
+    <p>How many activities are you looking for? 
+        <!-- <input type="number" th:field="*{NUM_API_CALLS}" min="1" max="5"/> -->
+        <input type="number" th:name="apiCallNo" required min="0" max="5" title="more than 5 activities makes Jack a busy boy"/>
         <input type="submit"  value="Enter"/> 
         <input type="reset" value="Reset"/></p>
+        
+    <p>*Note: No more than 5 activities at a time please...</p>
     </form>
+
+    <table>
+        <thead>
+        <tr class="table-dark">
+          <th scope="col">Activity</th>
+          <th scope="col">Participants</th>
+          <th scope="col">Accessibility</th>
+          <th scope="col">Type</th>
+          <th scope="col">Price</th>
+          <th scope="col">Status</th>
+          <th scope="col">Rating</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="boredResult, boredStat : ${boredlist}">
+          <td th:text="${boredResult.activity}"></td>
+          <td th:text="${boredResult.participants}"></td>
+          <td th:text="${boredResult.accessibility}"></td>
+          <td th:text="${boredResult.type}"></td>
+          <td th:text="${boredResult.price}"></td>
+          <td th:text="${boredResult.completionstatus}"></td>
+          <td th:text="${boredResult.rating}"></td>
+          <td>
+              <form th:action="@{'/update/'+ ${username}}" th:object="${boredResult}" method="post">
+                <input type="hidden" name="activity" th:value="${boredResult.activity}">
+                <input type="hidden" name="participants" th:value="${boredResult.participants}">
+                <input type="hidden" name="accessibility" th:value="${boredResult.accessibility}">
+                <input type="hidden" name="type" th:value="${boredResult.type}">
+                <input type="hidden" name="key" th:value="${boredResult.key}">
+                <input type="hidden" name="completionstatus" th:value="${boredResult.completionstatus}">
+                <input type="hidden" name="rating" th:value="${boredResult.rating}">
+                <button type="submit">Update</button>
+              </form>
+          </td>
+          <!-- <td >
+            <form th:action="@{'/updateRating/' + ${username}}" method ="post">
+              <input type="hidden" th:field="${boredStat.count}">
+              <select th:name="status">
+                  <option value="completed">Completed</option>
+                  <option value="not completed">Not completed</option>
+              </select>
+          </form>
+          </td> -->
+          
+          <!-- <td>
+            <form th:action="@{'/updateStatus/' + ${username}}" method = "post">
+              <input type="hidden" th:field="${boredStat.count}">
+              <select th:name="rating">
+                  <option value="Excellent">Excellent</option>
+                  <option value="Meh">Meh</option>
+                  <option value="Never Again">Never Again</option>
+              </select>
+            </form>
+          </td> -->
+        </tr>
+        </tbody>
+    </table>
+    <!-- <a
+            th:href="@{/cart/edit/{cartId}(cartId=${cartItem.id})} + '?username=' + *{username}"
+            >Edit
+            </a> -->
 </body>
 </html>

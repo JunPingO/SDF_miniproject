@@ -19,17 +19,32 @@ import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BoredResults implements Serializable{
+public class BoredResults{
 
     private static final Logger logger = LoggerFactory.getLogger(BoredResults.class);
 
+    private User user;
     private String activity;
     private String type;
     private BigDecimal participants;
     private BigDecimal price;
     private String key;
     private BigDecimal accessibility;
+    private String completionstatus;
+    private String rating;
     
+    public String getCompletionstatus() {
+        return completionstatus;
+    }
+    public void setCompletionstatus(String completionstatus) {
+        this.completionstatus = completionstatus;
+    }
+    public String getRating() {
+        return rating;
+    }
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
     public String getActivity() {
         return activity;
     }

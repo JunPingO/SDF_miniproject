@@ -2,6 +2,8 @@ package vttp.miniproject.service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,9 +34,15 @@ public class RedisService {
     RedisTemplate<String, Object> redisTemplate;
 
 
-    public void save(User user, BoredResults results) {
+    // public void save(User user, BoredResults results) {
+    //     logger.info("saving...");
+    //     redisTemplate.opsForValue().set(user.getUsername(),results);
+    //     logger.info("saved");
+    // }
+
+    public void save(User user) {
         logger.info("saving...");
-        redisTemplate.opsForValue().set(user.getUsername(),results);
+        redisTemplate.opsForValue().set(user.getUsername(),user);
         logger.info("saved");
     }
 
@@ -46,17 +54,42 @@ public class RedisService {
     // }
 
 
-    public Optional<BoredResults> getByUsername(final String username) {
-        logger.info("find user by username> " + username);
-        try{String jsonString = (String) redisTemplate.opsForValue().get(username);
-            new BoredResults();
-            BoredResults results = BoredResults.create(jsonString);
-            return Optional.of(results);
-        }catch (Exception e) {
-            logger.error(e.getMessage());
-            e.printStackTrace();
+    // public Optional<BoredResults> getByUsername(final String username) {
+    //     logger.info("find user by username> " + username);
+    //     try{String jsonString = (String) redisTemplate.opsForValue().get(username);
+    //         new BoredResults();
+    //         BoredResults results = BoredResults.create(jsonString);
+    //         return Optional.of(results);
+    //     }catch (Exception e) {
+    //         logger.error(e.getMessage());
+    //         e.printStackTrace();
+    //     }
+    //     logger.info("Redis Service >>>>> no user found");
+    //     return Optional.empty();
+    // }
+
+    // public Optional <BoredResults> findById(String username) {
+    //     logger.info("find mastermind by id> " + username);
+    //     boolean hasUser = redisTemplate.hasKey(username);
+    //     BoredResults result = new BoredResults();
+    //     if(hasUser){
+    //         result = (BoredResults) redisTemplate.opsForValue().get(username);
+    //     } else {
+    //         return Optional.empty();
+    //     }
+    //     return Optional.of(result);
+    // }
+
+    public Optional<User> findbyUser(String username) {
+        logger.info("find User>> " + username);
+        boolean hasUser = redisTemplate.hasKey(username);
+        User results = new User();
+        if(hasUser){
+            results = (User)redisTemplate.opsForValue().get(username);
+        } else {
+            return Optional.empty();
         }
-        logger.info("Redis Service >>>>> no user found");
-        return Optional.empty();
+        return Optional.of(results);
     }
+
 }

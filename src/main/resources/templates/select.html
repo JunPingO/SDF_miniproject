@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <span data-th-text="${username}"></span>
     <span data-th-text="${query.NUM_API_CALLS}"></span> activities listed below
     <!-- <br>
     <tr th:each="boredResult, boredStat : ${boredlist}">
@@ -19,10 +20,6 @@
         <span>accessibility:<td th:text="${boredResult.accessibility}"></td></span>
         <br> -->
         <form method="POST" action="/saveRecords">
-
-			<div> 
-				<button type="submit">Save</button> 
-			</div>
             <table>
                 <thead>
                 <tr class="table-dark">
@@ -46,9 +43,14 @@
                 </tr>
                 </tbody>
             </table>
-			
+
+            <div> 
+              <button type="submit">Save</button> 
+            </div>
 		</form>
 
+
+    <!-- <a th:href="@{'/createuser/' + ${user.username}}">Back to main page</a> -->
 
 
 </body>

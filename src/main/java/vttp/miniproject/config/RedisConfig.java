@@ -13,10 +13,12 @@ import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
+import vttp.miniproject.model.BoredResults;
 import vttp.miniproject.model.User;
 
 @Configuration
@@ -56,8 +58,10 @@ public class RedisConfig {
         //all the serializers
         template.setKeySerializer(new StringRedisSerializer());
         // template.setValueSerializer(new StringRedisSerializer());
+        // change the BoredResults.class to the class to be used when retrieving/saving from Redis
         Jackson2JsonRedisSerializer jackson2JsonJsonSerializer = new Jackson2JsonRedisSerializer(User.class);
         template.setValueSerializer(jackson2JsonJsonSerializer);
+        // template.setValueSerializer(new JdkSerializationRedisSerializer(getClass().getClassLoader()));
 
         
         return template;

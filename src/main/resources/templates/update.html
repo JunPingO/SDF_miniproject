@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOMETHING TO DO!</title>
+</head>
+<body>
+    Update Status:
+    <div>
+        <form 
+        th:action="@{'/updateReturn/' + ${username}}" 
+        th:object="${datarow}" 
+        method="post">
+            <td th:text="${datarow.activity}"></td>
+            <input type="hidden" name="key" th:value="${datarow.key}">
+
+            <select name="completionstatus" th:value="${datarow.completionstatus}">
+                <option value="Completed">Completed</option>
+                <option value="Not Completed">Not Completed</option>
+            </select>
+
+            <select name="rating" th:value="${datarow.rating}">
+                <option value="Excellent">Excellent</option>
+                <option value="Meh">Meh</option>
+                <option value="Dogshit">Dogshit</option>
+            </select>
+            <button type="submit">UPDATE</button>
+        </form>
+      </div>
+</body>
+</html>

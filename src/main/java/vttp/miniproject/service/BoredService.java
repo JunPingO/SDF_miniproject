@@ -49,18 +49,8 @@ public class BoredService {
     public List<BoredResults> multipleAPICalls(int count){
 
         List<BoredResults> boredlist = new ArrayList<>();
-
-        // boolean DuplicateStatus = false;
-        // List<String> boredlistKeys = new ArrayList<>();
-            
         for (int i =0; i < count; i++){
             Optional<BoredResults> boredcalls = BoredAPICall();
-
-            // if(boredlist.size() > 0){
-            //     for (int j=0; j < boredlist.size(); j++){
-            //         boredlistKeys.add(boredlist.get(j).getKey());
-            //     }
-            // }
             boredlist.add(boredcalls.get());
             }
         return boredlist;
