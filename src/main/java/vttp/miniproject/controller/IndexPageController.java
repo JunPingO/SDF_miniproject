@@ -41,6 +41,11 @@ public class IndexPageController {
     @Autowired
     private User user;
 
+    @GetMapping("/testbootstrap")
+    public String testbootstrap(Model model){
+        return "index";
+    }
+
     @GetMapping("/")
     public String login(Model model){
         User user = new User();
