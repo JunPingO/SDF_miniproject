@@ -9,36 +9,36 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Add Game</title>
+    <title>SOMETHING TO DO!</title>
 </head>
 <body>
 
-            <div class="container">          
-                <p class="h4 mb-4">Update Status/Ranking</p>
-            
-                    <form 
-                    th:action="@{'/updateReturn/' + ${username}}" 
-                    th:object="${datarow}" 
-                    method="post">
-                        <p th:text=" 'Activity: ' + ${datarow.activity}" ></p>
-            
-                        <p>Status:
-                            <select name="completionstatus" th:value="${datarow.completionstatus}">
-                                <option value="Completed">Completed</option>
-                                <option value="Not Completed">Not Completed</option>
-                            </select>
-                        </p>
-            
-                        <p>Rating:
-                            <select name="rating" th:value="${datarow.rating}">
-                                <option value="Excellent">Excellent</option>
-                                <option value="Meh">Meh</option>
-                                <option value="Dogshit">Dogshit</option>
-                            </select>
-                        </p>
-                        <p><input type="submit" value="Submit" class="btn btn-info col-2" />
-                    </form>   
-            </div>
+    <div class="container">          
+        <p class="h4 mb-4">Update Status/Ranking</p>
+    
+            <form 
+            th:action="@{'/updateReturn/' + ${username}}" 
+            th:object="${datarow}" 
+            method="post">
+                <p th:text=" 'Activity: ' + ${datarow.activity}" ></p>
+                <input type="hidden" name="key" th:value="${datarow.key}">
+                <p>Status:
+                    <select name="completionstatus" th:value="${datarow.completionstatus}">
+                        <option value="Completed">Completed</option>
+                        <option value="Not Completed">Not Completed</option>
+                    </select>
+                </p>
+    
+                <p>Rating:
+                    <select name="rating" th:value="${datarow.rating}">
+                        <option value="Excellent">Excellent</option>
+                        <option value="Meh">Meh</option>
+                        <option value="Dogshit">Dogshit</option>
+                    </select>
+                </p>
+                <p><input type="submit" value="Submit" class="btn btn-info col-2" />
+            </form>   
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>

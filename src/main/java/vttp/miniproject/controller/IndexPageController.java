@@ -96,6 +96,7 @@ public class IndexPageController {
     public String update( @PathVariable(name="username", required=true) String username, 
     @ModelAttribute BoredResults datarow, Model model){
         model.addAttribute("datarow", datarow);
+        logger.info("updatefunc getkey >>>>" + datarow.getKey());
         User sessUser = redisService.findbyUser(username).get();
         List<BoredResults> exsResults = sessUser.getResults();
         for (int i =0; i < exsResults.size(); i++){
@@ -114,7 +115,7 @@ public class IndexPageController {
     public String updateReturn( @PathVariable(name="username", required=true) String username, 
     @ModelAttribute BoredResults datarow, Model model){
         model.addAttribute("datarow", datarow);
-        // logger.info(datarow.getKey());
+        logger.info("updateReturn getkey >>>>" + datarow.getKey());
         User sessUser = redisService.findbyUser(username).get();
         List<BoredResults> exsResults = sessUser.getResults();
         for (int i =0; i < exsResults.size(); i++){
